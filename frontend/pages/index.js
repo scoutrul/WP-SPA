@@ -17,17 +17,23 @@ class Index extends Component {
             `${Config.apiUrl}/wp-json/postlight/v1/page?slug=welcome`
         );
         const page = await pageRes.json();
+
         const postsRes = await fetch(
             `${Config.apiUrl}/wp-json/wp/v2/posts?_embed`
         );
         const posts = await postsRes.json();
+
         const pagesRes = await fetch(
             `${Config.apiUrl}/wp-json/wp/v2/pages?_embed`
         );
         const pages = await pagesRes.json();
+
         return { page, posts, pages };
     }
 
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
         const posts = this.props.posts.map((post, index) => {
             return (
